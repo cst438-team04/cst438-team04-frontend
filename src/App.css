@@ -1,24 +1,16 @@
 .App {
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  border-spacing: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.App-table {
+	margin: auto;
 }
 
 .App-header {
@@ -32,174 +24,6 @@
   color: white;
 }
 
-.Center {
-  margin: 2rem auto;
-  width: 90%;
-  max-width: 960px;
-  border-collapse: collapse;
-  border-spacing: 0;
-  text-align: left;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.Center th,
-.Center td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-.Center th {
-  background-color: #f5f5f5;
-  font-weight: bold;
-}
-
-.Center tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.Center tr:hover {
-  background-color: #e8f0fe;
-}
-
-button {
-  background-color: #61dafb;
-  border: none;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  margin: 0.5rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-button:hover {
-  background-color: #21a1f1;
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: translateY(0);
-  background-color: #1d90db;
-}
-
-.App-link,
-.nav-link {
+.App-link {
   color: #61dafb;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.App-link:hover,
-.nav-link:hover,
-.nav-link.active {
-  color: #21a1f1;
-  text-decoration: underline;
-}
-
-.no-wrap {
-  white-space: nowrap;
-}
-
-td.no-wrap {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.Center th {
-  white-space: nowrap;
-  background-color: #f5f5f5;
-  font-weight: bold;
-}
-
-.Center tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.Center tr:hover {
-  background-color: #e8f0fe;
-}
-
-button {
-  background-color: #61dafb;
-  border: none;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  margin: 0.5rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-button:hover {
-  background-color: #21a1f1;
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: translateY(0);
-  background-color: #1d90db;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 600px) {
-  .Center th, .Center td {
-    padding: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-}
-
-.nav-title {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.page-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.page-subtitle {
-  color: #555;
-  margin-bottom: 2rem;
-}
-
-nav {
-  background-color: #282c34;
-  padding: 1rem;
-  color: white;
-  text-align: center;
-}
-
-nav a {
-  color: #61dafb;
-  text-decoration: none;
-  font-weight: bold;
-  margin: 0 1rem;
-}
-
-nav a:hover {
-  text-decoration: underline;
 }
