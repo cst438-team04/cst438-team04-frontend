@@ -50,8 +50,8 @@ const InstructorSectionsView = (props) => {
 
             <table className="Center">
                 <thead>
-                <tr>
-                    <th>Section No</th>
+                <tr className="no-wrap">
+                    <th >Section No</th>
                     <th>Course Id</th>
                     <th>Section Id</th>
                     <th>Building</th>
@@ -68,8 +68,8 @@ const InstructorSectionsView = (props) => {
                         <td>{section.secId}</td>
                         <td>{section.building}</td>
                         <td>{section.room}</td>
-                        <td>{section.times}</td>
-                        <td>
+                        <td className="no-wrap">{section.times}</td>
+                        <td className="no-wrap">
                             <Link to="/assignments" state={section}>View Assignments</Link> |{' '}
                             <Link to="/enrollments" state={section}>View Enrollments</Link>
                         </td>
