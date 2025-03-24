@@ -15,7 +15,7 @@ import InstructorHome from './components/instructor/InstructorHome';
 import AssignmentsView from './components/instructor/AssignmentsView';
 import EnrollmentsView from './components/instructor/EnrollmentsView';
 import InstructorSectionsView from './components/instructor/InstructorSectionsView';
-
+import AssignmentGrade from './components/instructor/AssignmentGrade';
 
 function App() {
 
@@ -65,6 +65,7 @@ function App() {
               <Route path="assignments" element={<AssignmentsView />} />
               <Route path="enrollments" element={<EnrollmentsView />} />
               <Route path="sections" element={<InstructorSectionsView />} />
+              <Route path="assignmentGrade" element={<AssignmentGrade />} />
             </Route>
           </Routes>
         </BrowserRouter>
