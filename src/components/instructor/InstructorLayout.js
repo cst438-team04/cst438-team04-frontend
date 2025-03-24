@@ -1,19 +1,20 @@
 import React from 'react';
-import { Outlet, Link } from "react-router-dom";
+import {Outlet, Link} from "react-router-dom";
 
 const InstructorLayout = () => {
 
-  return (
-    <>
-      <nav>
-        <Link to="/">Home</Link> 
-      </nav>
-      <h1>Instructor Home</h1>
-      Manage assignments and grades.
+    return (
+        <>
+            <nav>
+                <Link to="/">Home</Link> &nbsp;|&nbsp;
+                <Link to="/sections">View Sections</Link> &nbsp;|&nbsp;
+                <Link to="/enrollments">View Enrollments</Link>
+            </nav>
 
-      <Outlet />
-    </>
-  )
+            <Outlet />
+        </>
+    );
 };
+
 
 export default InstructorLayout;

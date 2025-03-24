@@ -12,7 +12,7 @@ import {useLocation} from 'react-router-dom';
 const EnrollmentsView = (props) => {
 
     const location = useLocation();
-    const {secNo, courseId, secId} = location.state;
+    //const {secNo, courseId, secId} = location.state;
 
     return(
         <> 

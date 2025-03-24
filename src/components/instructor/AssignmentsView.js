@@ -4,6 +4,12 @@ import { Button } from '@mui/material';
 import { SERVER_URL } from '../../Constants';
 import AssignmentAdd from './AssignmentAdd';
 import AssignmentUpdate from './AssignmentUpdate';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import GradeIcon from '@mui/icons-material/Grade';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+
 
 
 // instructor views assignments for their section
@@ -96,9 +102,21 @@ const AssignmentsView = (props) => {
                         <td>{a.title}</td>
                         <td>{a.dueDate}</td>
                         <td>
-                            <Button size="small" onClick={() => handleGrade(a)}>Grade</Button>
-                            <Button size="small" onClick={() => handleEdit(a)}>Edit</Button>
-                            <Button size="small" onClick={() => handleDelete(a.id)}>Delete</Button>
+                            <Tooltip title="Grade">
+                                <IconButton onClick={() => handleGrade(a)}>
+                                    <GradeIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Edit">
+                                <IconButton onClick={() => handleEdit(a)}>
+                                    <EditIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete">
+                                <IconButton onClick={() => handleDelete(a.id)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Tooltip>
                         </td>
                     </tr>
                 ))}

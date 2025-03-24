@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import {Link} from 'react-router-dom';
+import { TextField, Button, Paper, Typography, Box, Container } from '@mui/material';
 
 const InstructorHome = () => {
 
@@ -10,22 +11,14 @@ const InstructorHome = () => {
     }
 
     return (
-        <>
-            <table className="Center">
-            <tbody>
-            <tr>
-                <td>Year:</td>
-                <td><input type="text" id="year" name="year" value={term.year} onChange={onChange} /></td>
-            </tr>
-            <tr>
-                <td>Semester:</td>
-                <td><input type="text" id="semester" name="semester" value={term.semester} onChange={onChange} /></td>
-            </tr>
-            </tbody>
-            </table>
-            <Link to='/sections' state={term}>Show Sections</Link>
-        </>
-    )
+        <div>
+            <h1>Instructor Home</h1>
+            <p>View the sections you are teaching this term.</p>
+            <p>Create and manage assignments.</p>
+            <p>View enrollments and student lists.</p>
+            <p>Enter or update student grades.</p>
+        </div>
+    );
 };
 
 export default InstructorHome;
