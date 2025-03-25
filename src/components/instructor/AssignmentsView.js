@@ -1,5 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom';
+import { Button } from '@mui/material';
+import { SERVER_URL } from '../../Constants';
+import AssignmentAdd from './AssignmentAdd';
+import AssignmentUpdate from './AssignmentUpdate';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import GradeIcon from '@mui/icons-material/Grade';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+
+
 
 // instructor views assignments for their section
 // use location to get the section value 
@@ -12,12 +23,120 @@ import {useLocation} from 'react-router-dom'
 const AssignmentsView = (props) => {
 
     const location = useLocation();
+    const navigate = useNavigate();
     const {secNo, courseId, secId} = location.state;
-     
-    return(
-        <> 
-           <h3>Not implemented</h3>
-        </>
+
+    const [assignments, setAssignments] = useState([]);
+    const [message, setMessage] = useState('');
+    const [showAddDialog, setShowAddDialog] = useState(false);
+    const [showEditDialog, setShowEditDialog] = useState(false);
+    const [selectedAssignment, setSelectedAssignment] = useState(null);
+
+    const fetchAssignments = async () => {
+        try {
+            const response = await fetch(`${SERVER_URL}/sections/${secNo}/assignments`);
+            if (response.ok) {
+                const data = await response.json();
+                setAssignments(data);
+            } else {
+                const err = await response.json();
+                setMessage(`Error: ${err.message}`);
+            }
+        } catch (err) {
+            setMessage(`Network error: ${err.message}`);
+        }
+    };
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
+
+    const handleAdd = () => {
+        navigate('/assignmentAdd', { state: { secNo } });
+    };
+
+    const handleEdit = (assignment) => {
+        setSelectedAssignment(assignment);
+        setShowEditDialog(true);
+    };
+
+    const handleDelete = async (assignmentId) => {
+        if (!window.confirm('Are you sure you want to delete this assignment?')) return;
+
+        try {
+            const response = await fetch(`${SERVER_URL}/assignments/${assignmentId}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                await fetchAssignments();
+            } else {
+                const err = await response.json();
+                setMessage(`Error: ${err.message}`);
+            }
+        } catch (err) {
+            setMessage(`Network error: ${err.message}`);
+        }
+    };
+
+    const handleGrade = (assignment) => {
+        navigate('/assignmentGrade', { state: { assignment } });
+    };
+
+    return (
+        <div>
+            <h3>Assignments for Section {secNo}</h3>
+            <Button variant="contained" onClick={() => setShowAddDialog(true)}>Add Assignment</Button>
+            <p>{message}</p>
+            <table className="Center">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {assignments.map(a => (
+                    <tr key={a.id}>
+                        <td>{a.id}</td>
+                        <td>{a.title}</td>
+                        <td>{a.dueDate}</td>
+                        <td>
+                            <Tooltip title="Grade">
+                                <IconButton onClick={() => handleGrade(a)}>
+                                    <GradeIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Edit">
+                                <IconButton onClick={() => handleEdit(a)}>
+                                    <EditIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete">
+                                <IconButton onClick={() => handleDelete(a.id)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Tooltip>
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            {showAddDialog && (
+                <AssignmentAdd
+                    secNo={secNo}
+                    onClose={() => setShowAddDialog(false)}
+                    onAssignmentAdded={fetchAssignments}
+                />
+            )}
+            {showEditDialog && selectedAssignment && (
+                <AssignmentUpdate
+                    assignment={selectedAssignment}
+                    onClose={() => setShowEditDialog(false)}
+                    onAssignmentUpdated={fetchAssignments}
+                />
+            )}
+        </div>
     );
 }
 
