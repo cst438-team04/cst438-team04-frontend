@@ -53,6 +53,8 @@ const InstructorSectionsView = (props) => {
                 <tr className="no-wrap">
                     <th >Section No</th>
                     <th>Course Id</th>
+                    <th >Year</th>
+                    <th >Semester</th>
                     <th>Section Id</th>
                     <th>Building</th>
                     <th>Room</th>
@@ -65,6 +67,8 @@ const InstructorSectionsView = (props) => {
                     <tr key={section.secNo}>
                         <td>{section.secNo}</td>
                         <td>{section.courseId}</td>
+                        <td>{section.year}</td>
+                        <td>{section.semester}</td>
                         <td>{section.secId}</td>
                         <td>{section.building}</td>
                         <td>{section.room}</td>

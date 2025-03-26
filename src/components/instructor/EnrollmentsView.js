@@ -156,8 +156,8 @@ function EnrollmentsView() {
                         <tr key={e.enrollmentId}>
                             <td>{e.enrollmentId}</td>
                             <td>{e.studentId}</td>
-                            <td>{e.studentName}</td>
-                            <td>{e.studentEmail}</td>
+                            <td>{e.name}</td>
+                            <td>{e.email}</td>
                             <td>
                                 <input
                                     type="text"
