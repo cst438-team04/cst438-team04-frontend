@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import GradeIcon from '@mui/icons-material/Grade';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import {confirmAlert} from "react-confirm-alert";
 
 
 
@@ -59,8 +60,23 @@ const AssignmentsView = (props) => {
         setShowEditDialog(true);
     };
 
+    const deleteAlert = (event) => {
+        confirmAlert({
+            title: 'Confirm to delete',
+            message: 'Do you really want to delete?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => handleDelete(event)
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        });
+    }
+
     const handleDelete = async (assignmentId) => {
-        if (!window.confirm('Are you sure you want to delete this assignment?')) return;
 
         try {
             const response = await fetch(`${SERVER_URL}/assignments/${assignmentId}`, {
@@ -113,7 +129,7 @@ const AssignmentsView = (props) => {
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Delete">
-                                <IconButton onClick={() => handleDelete(a.id)}>
+                                <IconButton onClick={() => deleteAlert(a.id)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </Tooltip>
