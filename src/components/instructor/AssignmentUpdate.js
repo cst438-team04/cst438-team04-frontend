@@ -4,7 +4,7 @@ import {
     Button, TextField
 } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../Constants';
+import {GRADEBOOK_URL, SERVER_URL} from '../../Constants';
 
 //  instructor updates assignment title, dueDate 
 //  use an mui Dialog
@@ -27,7 +27,7 @@ const AssignmentUpdate = ({ assignment, onClose, onAssignmentUpdated })  => {
         }
 
         try {
-            const response = await fetch(`${SERVER_URL}/assignments`, {
+            const response = await fetch(`${GRADEBOOK_URL}/assignments`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

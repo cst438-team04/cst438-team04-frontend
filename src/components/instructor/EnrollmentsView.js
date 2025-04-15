@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
-import { SERVER_URL } from '../../Constants';
+import {GRADEBOOK_URL, SERVER_URL} from '../../Constants';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Button from '@mui/material/Button';
@@ -39,7 +39,7 @@ function EnrollmentsView() {
 
     const fetchEnrollments = async (sectionNo) => {
         try {
-            const response = await fetch(`${SERVER_URL}/sections/${sectionNo}/enrollments`);
+            const response = await fetch(`${GRADEBOOK_URL}/sections/${sectionNo}/enrollments`);
             
             if (response.status === 404) {
                 setEnrollments([]);
@@ -71,7 +71,7 @@ function EnrollmentsView() {
 
     const saveGrades = async () => {
         try {
-            const response = await fetch(`${SERVER_URL}/enrollments`, {
+            const response = await fetch(`${GRADEBOOK_URL}/enrollments`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(enrollments.map(e => ({
@@ -95,7 +95,7 @@ function EnrollmentsView() {
 
     const deleteEnrollment = async (enrollmentId) => {
         try {
-            const response = await fetch(`${SERVER_URL}/enrollments/${enrollmentId}`, {
+            const response = await fetch(`${GRADEBOOK_URL}/enrollments/${enrollmentId}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });

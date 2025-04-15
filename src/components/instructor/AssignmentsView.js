@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import { Button } from '@mui/material';
-import { SERVER_URL } from '../../Constants';
+import {GRADEBOOK_URL, SERVER_URL} from '../../Constants';
 import AssignmentAdd from './AssignmentAdd';
 import AssignmentUpdate from './AssignmentUpdate';
 import EditIcon from '@mui/icons-material/Edit';
@@ -35,7 +35,7 @@ const AssignmentsView = (props) => {
 
     const fetchAssignments = async () => {
         try {
-            const response = await fetch(`${SERVER_URL}/sections/${secNo}/assignments`);
+            const response = await fetch(`${GRADEBOOK_URL}/sections/${secNo}/assignments`);
             if (response.ok) {
                 const data = await response.json();
                 setAssignments(data);
@@ -79,7 +79,7 @@ const AssignmentsView = (props) => {
     const handleDelete = async (assignmentId) => {
 
         try {
-            const response = await fetch(`${SERVER_URL}/assignments/${assignmentId}`, {
+            const response = await fetch(`${GRADEBOOK_URL}/assignments/${assignmentId}`, {
                 method: 'DELETE'
             });
             if (response.ok) {

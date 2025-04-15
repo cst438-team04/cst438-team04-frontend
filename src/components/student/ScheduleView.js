@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SERVER_URL} from "../../Constants";
+import {GRADEBOOK_URL, SERVER_URL} from "../../Constants";
 import Button from '@mui/material/Button'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {confirmAlert} from "react-confirm-alert";

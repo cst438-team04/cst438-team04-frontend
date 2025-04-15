@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../Constants';
+import {GRADEBOOK_URL, SERVER_URL} from '../../Constants';
 import { Button } from '@mui/material';
 
 // instructor enters students' grades for an assignment
@@ -30,7 +30,7 @@ const AssignmentGrade = (props) => {
 
     const fetchGrades = async () => {
         try {
-            const response = await fetch(`${SERVER_URL}/assignments/${assignment.id}/grades`);
+            const response = await fetch(`${GRADEBOOK_URL}/assignments/${assignment.id}/grades`);
             if (response.ok) {
                 const data = await response.json();
                 setGrades(data);
@@ -51,7 +51,7 @@ const AssignmentGrade = (props) => {
 
     const handleSave = async () => {
         try {
-            const response = await fetch(`${SERVER_URL}/grades`, {
+            const response = await fetch(`${GRADEBOOK_URL}/grades`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(grades),

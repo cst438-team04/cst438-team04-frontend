@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Button from '@mui/material/Button'
-import {SERVER_URL} from "../../Constants";
+import {GRADEBOOK_URL, SERVER_URL} from "../../Constants";
 
 // students displays a list of open sections for a 
 // use the URL /sections/open

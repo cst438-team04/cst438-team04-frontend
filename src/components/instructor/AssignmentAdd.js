@@ -4,7 +4,7 @@ import {
     Button, TextField
 } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../Constants';
+import {GRADEBOOK_URL, SERVER_URL} from '../../Constants';
 
 // complete the code.
 // instructor adds an assignment to a section
@@ -34,7 +34,7 @@ const AssignmentAdd = ({secNo, onClose, onAssignmentAdded})  => {
         }
 
         try {
-            const response = await fetch(`${SERVER_URL}/assignments`, {
+            const response = await fetch(`${GRADEBOOK_URL}/assignments`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
