@@ -7,7 +7,7 @@ const InstructorLayout = () => {
         <>
             <nav>
                 <Link to="/">Home</Link> &nbsp;|&nbsp;
-                <Link to="/sections">View Sections</Link> &nbsp;|&nbsp;
+                <Link id="sections" to="/sections">View Sections</Link> &nbsp;|&nbsp;
                 <Link to="/enrollments">View Enrollments</Link>
             </nav>
 

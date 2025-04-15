@@ -92,6 +92,7 @@ const ScheduleView = (props) => {
                 {/*Inputs for student to search by semester and year*/}
                 <label>Semester: </label>
                 <input
+                    id = "semester"
                     type = "text"
                     value = {semester}
                     onChange={(e)=>setSemester(e.target.value)}
@@ -99,13 +100,14 @@ const ScheduleView = (props) => {
                 />
                 <label>Year</label>
                 <input
+                    id = "year"
                     type = "text"
                     value ={year}
                     onChange={(e) => setYear(e.target.value)}
                     placeholder="e.g. 2025"
                 />
                 {/*sets the onclick to the fetchScheduleEnrollments method to load the assignments pertaining to userinput, sets url for year and semester to api*/}
-                <button onClick={fetchScheduleEnrollments}>Fetch Schedule</button>
+                <button id="searchSchedule" onClick={fetchScheduleEnrollments}>Fetch Schedule</button>
             </div>
             <table className="Center" >
                 <thead>
@@ -125,7 +127,7 @@ const ScheduleView = (props) => {
                         <td>{se.room}</td>
                         <td>{se.times}</td>
                         <td>{se.credits}</td>
-                        <td><Button onClick = {deleteAlert}>Delete</Button></td>
+                        <td><Button id={`deleteBtn-${se.enrollmentId}`} onClick = {deleteAlert}>Delete</Button></td>
                     </tr>
                 ))}
                 </tbody>

@@ -74,8 +74,8 @@ const InstructorSectionsView = (props) => {
                         <td>{section.room}</td>
                         <td className="no-wrap">{section.times}</td>
                         <td className="no-wrap">
-                            <Link to="/assignments" state={section}>View Assignments</Link> |{' '}
-                            <Link to="/enrollments" state={section}>View Enrollments</Link>
+                            <Link to="/assignments" state={section} id={`viewAssignments-${section.secNo}`}>View Assignments</Link> |{' '}
+                            <Link to="/enrollments" state={section} id={`viewEnrollments-${section.secNo}`}>View Enrollments</Link>
                         </td>
                     </tr>
                 ))}

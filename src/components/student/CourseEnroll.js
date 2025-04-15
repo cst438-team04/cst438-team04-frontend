@@ -63,7 +63,7 @@ const CourseEnroll = (props) => {
     return(
         <div>
             <h3>Open Courses</h3>
-            <h4>{message}</h4>
+            <h4 id="enrollMessage">{message}</h4>
             <table className="Center" >
                 <thead>
                 <tr>
@@ -83,6 +83,7 @@ const CourseEnroll = (props) => {
                         <td>{o.instructorName}</td>
                         <td>
                             <Button
+                                id={`enrollBtn-${o.secNo}`}
                                 variant="contained"
                                 color="primary"
                                 onClick={() => enrollInCourse(o.secNo)}

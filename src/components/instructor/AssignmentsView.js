@@ -9,15 +9,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import GradeIcon from '@mui/icons-material/Grade';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import {confirmAlert} from "react-confirm-alert";
 
 
 
 // instructor views assignments for their section
-// use location to get the section value 
-// 
+// use location to get the section value
+//
 // GET assignments using the URL /sections/{secNo}/assignments
 // returns a list of AssignmentDTOs
-// display a table with columns 
+// display a table with columns
 // assignment id, title, dueDate and buttons to grade, edit, delete each assignment
 
 const AssignmentsView = (props) => {
@@ -59,8 +60,23 @@ const AssignmentsView = (props) => {
         setShowEditDialog(true);
     };
 
+    const deleteAlert = (event) => {
+        confirmAlert({
+            title: 'Confirm to delete',
+            message: 'Do you really want to delete?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => handleDelete(event)
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        });
+    }
+
     const handleDelete = async (assignmentId) => {
-        if (!window.confirm('Are you sure you want to delete this assignment?')) return;
 
         try {
             const response = await fetch(`${SERVER_URL}/assignments/${assignmentId}`, {
@@ -103,17 +119,17 @@ const AssignmentsView = (props) => {
                         <td>{a.dueDate}</td>
                         <td>
                             <Tooltip title="Grade">
-                                <IconButton onClick={() => handleGrade(a)}>
+                                <IconButton id={`grade-assignment-${a.id}`} onClick={() => handleGrade(a)}>
                                     <GradeIcon />
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Edit">
-                                <IconButton onClick={() => handleEdit(a)}>
+                                <IconButton id={`edit-assignment-${a.id}`} onClick={() => handleEdit(a)}>
                                     <EditIcon />
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Delete">
-                                <IconButton onClick={() => handleDelete(a.id)}>
+                                <IconButton id={`delete-assignment-${a.id}`} onClick={() => deleteAlert(a.id)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </Tooltip>
