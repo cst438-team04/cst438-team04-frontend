@@ -63,6 +63,7 @@ const AssignmentAdd = ({secNo, onClose, onAssignmentAdded})  => {
             <DialogTitle>Add Assignment</DialogTitle>
             <DialogContent>
                 <TextField
+                    id="atitle"
                     margin="dense"
                     label="Title"
                     fullWidth
@@ -70,6 +71,7 @@ const AssignmentAdd = ({secNo, onClose, onAssignmentAdded})  => {
                     onChange={e => setTitle(e.target.value)}
                 />
                 <TextField
+                    id="adueDate"
                     margin="dense"
                     label="Due Date"
                     type="date"
@@ -81,8 +83,8 @@ const AssignmentAdd = ({secNo, onClose, onAssignmentAdded})  => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleSave}>Save</Button>
+                <Button id="cancelAssignment" onClick={handleClose}>Cancel</Button>
+                <Button id="saveAssignment" onClick={handleSave}>Save</Button>
             </DialogActions>
         </Dialog>
     );
