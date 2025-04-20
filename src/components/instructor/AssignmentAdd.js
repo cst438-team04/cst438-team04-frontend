@@ -34,9 +34,11 @@ const AssignmentAdd = ({secNo, onClose, onAssignmentAdded})  => {
         }
 
         try {
+            const jwt = sessionStorage.getItem('jwt');
             const response = await fetch(`${SERVER_URL}/assignments`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                'Authorization':jwt,},
                 body: JSON.stringify({
                     title: title,
                     dueDate: dueDate,

@@ -46,8 +46,10 @@ const ScheduleView = (props) => {
         }
 
         const enrollmentId = enrollmentToDelete.enrollmentId;
+        const jwt = sessionStorage.getItem('jwt');
         const response = await fetch(`${SERVER_URL}/enrollments/${enrollmentId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {'Authorization':jwt,}
         });
         if(response.ok) {
             const scheduleEnrollment_copy = scheduleEnrollment.filter((se) => se.enrollmentId !== enrollmentId);
@@ -63,8 +65,11 @@ const ScheduleView = (props) => {
     }
     const fetchScheduleEnrollments = async() => {
         try {
-            const studentId = 3;
-            const response = await fetch(`${SERVER_URL}/enrollments?studentId=${studentId}&year=${year}&semester=${semester}`);
+            //const studentId = 3;
+            const jwt = sessionStorage.getItem('jwt');
+            const response = await fetch(`${SERVER_URL}/enrollments?year=${year}&semester=${semester}`,{
+                headers: {'Authorization':jwt,}
+            });
             if (response.ok) {
                 const enrollments = await response.json();
                 setScheduleEnrollments(enrollments);

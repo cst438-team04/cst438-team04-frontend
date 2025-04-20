@@ -7,7 +7,6 @@ import Login from './Login';
 
 
 function App() {
-
   const[isAuthenticated, setAuth] = useState(false);
   const[userType, setUserType] = useState('');
 

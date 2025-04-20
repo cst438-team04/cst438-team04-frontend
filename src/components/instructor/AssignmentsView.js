@@ -35,7 +35,10 @@ const AssignmentsView = (props) => {
 
     const fetchAssignments = async () => {
         try {
-            const response = await fetch(`${SERVER_URL}/sections/${secNo}/assignments`);
+            const jwt = sessionStorage.getItem('jwt');
+            const response = await fetch(`${SERVER_URL}/sections/${secNo}/assignments`, {
+                headers: {'Authorization':jwt,}
+            });
             if (response.ok) {
                 const data = await response.json();
                 setAssignments(data);
@@ -79,8 +82,10 @@ const AssignmentsView = (props) => {
     const handleDelete = async (assignmentId) => {
 
         try {
+            const jwt = sessionStorage.getItem('jwt');
             const response = await fetch(`${SERVER_URL}/assignments/${assignmentId}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {'Authorization':jwt,}
             });
             if (response.ok) {
                 await fetchAssignments();

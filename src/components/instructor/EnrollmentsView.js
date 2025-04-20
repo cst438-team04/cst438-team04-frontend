@@ -39,7 +39,10 @@ function EnrollmentsView() {
 
     const fetchEnrollments = async (sectionNo) => {
         try {
-            const response = await fetch(`${SERVER_URL}/sections/${sectionNo}/enrollments`);
+            const jwt = sessionStorage.getItem('jwt');
+            const response = await fetch(`${SERVER_URL}/sections/${sectionNo}/enrollments`, {
+                headers: {'Authorization':jwt,}
+            });
             
             if (response.status === 404) {
                 setEnrollments([]);
@@ -71,9 +74,11 @@ function EnrollmentsView() {
 
     const saveGrades = async () => {
         try {
+            const jwt = sessionStorage.getItem('jwt');
             const response = await fetch(`${SERVER_URL}/enrollments`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                'Authorization':jwt,},
                 body: JSON.stringify(enrollments.map(e => ({
                     enrollmentId: e.enrollmentId,
                     grade: e.grade || ''
@@ -95,9 +100,11 @@ function EnrollmentsView() {
 
     const deleteEnrollment = async (enrollmentId) => {
         try {
+            const jwt = sessionStorage.getItem('jwt');
             const response = await fetch(`${SERVER_URL}/enrollments/${enrollmentId}`, {
                 method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json',
+                'Authorization':jwt,}
             });
 
             if (!response.ok) {

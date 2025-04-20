@@ -17,7 +17,10 @@ const CourseEnroll = (props) => {
 
      const fetchOpenCourses = async () => {
          try {
-             const response = await fetch(`${SERVER_URL}/sections/open`);
+             const jwt = sessionStorage.getItem('jwt');
+             const response = await fetch(`${SERVER_URL}/sections/open`,{headers: {
+                     'Authorization':jwt,
+                 }});
              if(response.ok) {
                  const courses = await response.json();
                  setOpenCourses(courses);
@@ -36,9 +39,11 @@ const CourseEnroll = (props) => {
 
      const enrollInCourse = async (secNo) => {
          try {
-             const response = await fetch(`${SERVER_URL}/enrollments/sections/${secNo}?studentId=3`, {
+             const jwt = sessionStorage.getItem('jwt');
+             const response = await fetch(`${SERVER_URL}/enrollments/sections/${secNo}`, {
                  method: 'POST',
-                 headers: { 'Content-Type': 'application/json' }
+                 headers: { 'Content-Type': 'application/json',
+                 'Authorization':jwt,}
              });
              const contentType = response.headers.get("content-type");
              if(response.ok) {
