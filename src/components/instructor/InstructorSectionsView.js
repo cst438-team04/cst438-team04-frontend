@@ -21,10 +21,12 @@ const InstructorSectionsView = (props) => {
         try {
             const year = 2025;
             const semester = 'Spring';
-            const email = 'dwisneski@csumb.edu'; // This will be replaced with logged-in user in assignment 7
-
+            //const email = 'dwisneski@csumb.edu'; // This will be replaced with logged-in user in assignment 7
+            const jwt = sessionStorage.getItem('jwt');
             const response = await fetch(
-                `${SERVER_URL}/sections?email=${email}&year=${year}&semester=${semester}`
+                `${SERVER_URL}/sections?&year=${year}&semester=${semester}`, {
+                    headers: {'Authorization':jwt,}
+                }
             );
 
             if (!response.ok) {

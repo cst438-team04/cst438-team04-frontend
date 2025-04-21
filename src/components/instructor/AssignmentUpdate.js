@@ -27,9 +27,11 @@ const AssignmentUpdate = ({ assignment, onClose, onAssignmentUpdated })  => {
         }
 
         try {
+            const jwt = sessionStorage.getItem('jwt');
             const response = await fetch(`${SERVER_URL}/assignments`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                'Authorization':jwt,},
                 body: JSON.stringify({
                     id: assignment.id,
                     title: title,

@@ -22,9 +22,11 @@ const AssignmentsStudentView = (props) => {
     const fetchAssignments = async () => {
         try {
             //login will be added later, for now I will utilize studentId 3 to simulate that student being logged in
-            const studentId = 3;
+            //const studentId = 3;
             //year and semester inputs will be filled out later through text fields
-            const response = await fetch(`${SERVER_URL}/assignments?studentId=${studentId}&year=${year}&semester=${semester}`);
+            const jwt = sessionStorage.getItem('jwt');
+            const response = await fetch(`${SERVER_URL}/assignments?&year=${year}&semester=${semester}`, {
+                headers: {'Authorization':jwt,}});
             if (response.ok) {
                 const assignments = await response.json();
                 setAssignments(assignments)

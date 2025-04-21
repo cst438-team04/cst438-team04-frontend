@@ -15,7 +15,12 @@ function CoursesView(props) {
 
     const  fetchCourses = async () => {
       try {
-        const response = await fetch(`${SERVER_URL}/courses`);
+          const jwt = sessionStorage.getItem('jwt');
+        const response = await fetch(`${SERVER_URL}/courses`, {
+            headers: {
+                'Authorization': jwt,
+            }
+        });
         if (response.ok) {
           const courses = await response.json();
           setCourses(courses);
@@ -34,11 +39,13 @@ function CoursesView(props) {
 
     const saveCourse = async (course) => {
       try {
+          const jwt = sessionStorage.getItem('jwt');
         const response = await fetch (`${SERVER_URL}/courses`, 
             {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
+                  'Authorization':jwt,
               }, 
               body: JSON.stringify(course),
             });
@@ -56,11 +63,13 @@ function CoursesView(props) {
 
     const addCourse = async (course) => {
       try {
-        const response = await fetch (`${SERVER_URL}/courses`, 
+          const jwt = sessionStorage.getItem('jwt');
+        const response = await fetch (`${SERVER_URL}/courses`,
             {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
+                  'Authorization': jwt,
               }, 
               body: JSON.stringify(course),
             });
@@ -78,11 +87,13 @@ function CoursesView(props) {
 
     const deleteCourse = async (courseId) => {
       try {
+          const jwt = sessionStorage.getItem('jwt');
         const response = await fetch (`${SERVER_URL}/courses/${courseId}`, 
             {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
+                  'Authorization':jwt,
               }, 
             });
         if (response.ok) {
